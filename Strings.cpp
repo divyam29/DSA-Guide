@@ -227,22 +227,27 @@ void checkAnagram(char *s1, char *s2)
     }
 }
 
-void generatePermutations(char* s,int k){
+void generatePermutations(char *s, int k)
+{
     // const int len=strLength(s)+1;
-    static int A[10]={0};
+    static int A[10] = {0};
     static char result[10];
     int i;
-    if(s[k]=='\0'){
-        result[k]='\0';
-        cout<<result<<endl;
+    if (s[k] == '\0')
+    {
+        result[k] = '\0';
+        cout << result << endl;
     }
-    else{
-        for(i=0;s[i]!=0;i++){
-            if(A[i]==0){
-                result[k]=s[i];
-                A[i]=1;
-                generatePermutations(s,k+1);
-                A[i]=0;
+    else
+    {
+        for (i = 0; s[i] != 0; i++)
+        {
+            if (A[i] == 0)
+            {
+                result[k] = s[i];
+                A[i] = 1;
+                generatePermutations(s, k + 1);
+                A[i] = 0;
             }
         }
     }
@@ -296,6 +301,6 @@ int main()
 
     // checkAnagram(str, str2);
 
-    cout<<"Permutations:\n";
-    generatePermutations(str,0);
+    // cout<<"Permutations:\n";
+    // generatePermutations(str,0);
 }
