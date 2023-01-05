@@ -302,5 +302,5 @@ int main()
     // checkAnagram(str, str2);
 
     // cout<<"Permutations:\n";
-    // generatePermutations(str,0);
+    generatePermutations(str,0);
 }
