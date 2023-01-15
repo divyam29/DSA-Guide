@@ -110,21 +110,114 @@ int recursiveSumofElementsLL(Node *head)
     }
 }
 
-int maxElementInLL(Node* head){
-    int max=0;
-    Node* temp=head;
-    while(temp!=NULL){
-        if(max<temp->data){
-            max=temp->data;
+int maxElementInLL(Node *head)
+{
+    int max = 0;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        if (max < temp->data)
+        {
+            max = temp->data;
         }
-        temp=temp->next;
+        temp = temp->next;
     }
     return max;
 }
 
+Node *linearSearchLL(Node *head, int key)
+{
+    Node *ptr = head;
+    while (ptr != NULL)
+    {
+        if (key == ptr->data)
+        {
+            return ptr;
+        }
+        ptr = ptr->next;
+    }
+    return NULL;
+}
+
+Node *insertBeforeFirst(Node *head, int data)
+{
+    Node *ptr = new Node(data);
+    ptr->next = head;
+    head = ptr;
+    return head;
+}
+
+void insertAfterAnyNode(Node *head, int index, int data)
+{
+    Node *ptr = new Node(data);
+    Node *temp = head;
+    for (int i = 0; i < index - 1; i++)
+    {
+        temp = temp->next;
+    }
+    ptr->next = temp->next;
+    temp->next = ptr;
+}
+
+Node *insertInLL(Node *head, int index, int data)
+{
+    Node *ptr = new Node(data);
+    if (index == 0)
+    {
+        ptr->next = head;
+        head = ptr;
+        return head;
+    }
+    else
+    {
+        Node *temp = head;
+        for (int i = 0; i < index - 1; i++)
+        {
+            temp = temp->next;
+        }
+        if (temp)
+        {
+            ptr->next = temp->next;
+            temp->next = ptr;
+        }
+    }
+    return head;
+}
+
+Node *insertInSortedLL(Node *head, int data)
+{
+    Node *ptr = new Node(data);
+    Node *prev = NULL;
+    Node *curr = head;
+    if (curr == NULL)
+    {
+        head = ptr;
+        return head;
+    }
+    else
+    {
+        while (curr && curr->data < data)
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        if (curr == head)
+        {
+            ptr->next = head;
+            head = ptr;
+        }
+        else
+        {
+            ptr->next = prev->next;
+            prev->next = ptr;
+        }
+    }
+    return head;
+}
+
 int main()
 {
-    int LL[] = {-2221, -324232, 3, 329642974, 5, 32432146, 7, 8, 4325249, 0};
+    int LL[] = {1, 2, 3, 4, 5};
     int size = sizeof(LL) / sizeof(int);
     Node *head = createLL(LL, size);
 
@@ -139,7 +232,36 @@ int main()
     // cout << "Sum of Nodes in LL: " << sumOfElementsLL(head);
     // cout << "Sum of Nodes in LL: " << recursiveSumofElementsLL(head);
 
-    cout<<"Max Element in LL: "<<maxElementInLL(head);
+    // cout<<"Max Element in LL: "<<maxElementInLL(head);
+
+    // if (linearSearchLL(head, 52))
+    // {
+    //     cout << "Element found...";
+    // }
+    // else
+    // {
+    //     cout << "Element not found..";
+    // }
+
+    // head = insertBeforeFirst(head, 15);
+    // cout << "New Linked List:\n";
+    // displayLL(head);
+    // cout << endl;
+
+    // insertAfterAnyNode(head, 1, 15);
+    // cout << "New Linked List:\n";
+    // displayLL(head);
+    // cout << endl;
+
+    // head = insertInLL(head, 5, 15);
+    // cout << "New Linked List:\n";
+    // displayLL(head);
+    // cout << endl;
+
+    head = insertInSortedLL(head, -436);
+    cout << "New Linked List:\n";
+    displayLL(head);
+    cout << endl;
 
     return 0;
 }
