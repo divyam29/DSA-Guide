@@ -215,6 +215,34 @@ Node *insertInSortedLL(Node *head, int data)
     return head;
 }
 
+Node *deleteNodeLL(Node *head, int index)
+{
+    int x = -1;
+    Node *curr = head;
+    if (index == 0)
+    {
+        head = head->next;
+        x = curr->data;
+        delete curr;
+    }
+    else
+    {
+        Node *prev = NULL;
+        for (int i = 0; i <= index - 1; i++)
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        if (curr)
+        {
+            prev->next = curr->next;
+            x = curr->data;
+            delete curr;
+        }
+    }
+    return head;
+}
+
 int main()
 {
     int LL[] = {1, 2, 3, 4, 5};
@@ -253,12 +281,17 @@ int main()
     // displayLL(head);
     // cout << endl;
 
-    // head = insertInLL(head, 5, 15);
+    // head = insertInLL(head, 2, 15);
     // cout << "New Linked List:\n";
     // displayLL(head);
     // cout << endl;
 
-    head = insertInSortedLL(head, -436);
+    // head = insertInSortedLL(head, -436);
+    // cout << "New Linked List:\n";
+    // displayLL(head);
+    // cout << endl;
+
+    head = deleteNodeLL(head, 4);
     cout << "New Linked List:\n";
     displayLL(head);
     cout << endl;
