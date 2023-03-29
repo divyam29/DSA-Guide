@@ -62,9 +62,9 @@ public:
 
     // void display()
     // {
-    //     for (int i = f + 1; i <= b; i++)
+    //     for (int i = f + 1; i <= b; i = (i + 1) % size)
     //     {
-    //         cout << peek(i + 1) << endl;
+    //         cout << arr[i] << endl;
     //     }
     // }
 };
