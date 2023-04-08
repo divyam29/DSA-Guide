@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#define SIZE 10
 using namespace std;
 
 class Node
@@ -92,7 +93,7 @@ int deleteLL(Node **head, int key)
 // Hash function
 int hash_func(int key)
 {
-    return key % 10;
+    return key % SIZE;
 }
 
 // Insertion in hash table
@@ -104,7 +105,7 @@ void hashInsert(Node *H[], int key)
 
 void hashDisplay(Node *H[])
 {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < SIZE; i++)
     {
         cout << i << "-> ";
         displayLL(&H[i]);
@@ -129,49 +130,49 @@ int hashDelete(Node *H[], int key)
 int main()
 {
     // Initialize hash table
-    Node *hash_table[10];
+    Node *HT[SIZE];
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < SIZE; i++)
     {
-        hash_table[i] = NULL;
+        HT[i] = NULL;
     }
 
-    hashInsert(hash_table, 16);
-    hashInsert(hash_table, 12);
-    hashInsert(hash_table, 25);
-    hashInsert(hash_table, 39);
-    hashInsert(hash_table, 6);
-    hashInsert(hash_table, 122);
-    hashInsert(hash_table, 5);
-    hashInsert(hash_table, 68);
-    hashInsert(hash_table, 75);
+    hashInsert(HT, 16);
+    hashInsert(HT, 12);
+    hashInsert(HT, 25);
+    hashInsert(HT, 39);
+    hashInsert(HT, 6);
+    hashInsert(HT, 122);
+    hashInsert(HT, 5);
+    hashInsert(HT, 68);
+    hashInsert(HT, 75);
 
-    hashDisplay(hash_table);
+    hashDisplay(HT);
 
     cout << endl;
 
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < SIZE; i++)
     {
-        cout << typeid(hash_table[i]).name() << " " << hash_table[i] << endl;
+        cout << typeid(HT[i]).name() << " " << HT[i] << endl;
     }
 
     cout << endl;
 
-    cout << hashSearch(hash_table, 39) << endl;
-    cout << hashSearch(hash_table, 30) << endl;
-    cout << hashSearch(hash_table, 122) << endl;
+    cout << hashSearch(HT, 39) << endl;
+    cout << hashSearch(HT, 30) << endl;
+    cout << hashSearch(HT, 122) << endl;
 
     cout << endl;
 
-    cout << hashDelete(hash_table, 75) << endl;
-    cout << hashDelete(hash_table, 69) << endl;
-    cout << hashDelete(hash_table, 5) << endl;
-    cout << hashDelete(hash_table, 122) << endl;
-    cout << hashDelete(hash_table, 6) << endl;
-    cout << hashDelete(hash_table, 49) << endl;
+    cout << hashDelete(HT, 75) << endl;
+    cout << hashDelete(HT, 69) << endl;
+    cout << hashDelete(HT, 5) << endl;
+    cout << hashDelete(HT, 122) << endl;
+    cout << hashDelete(HT, 6) << endl;
+    cout << hashDelete(HT, 49) << endl;
 
     cout << endl;
 
-    hashDisplay(hash_table);
+    hashDisplay(HT);
     return 0;
 }
