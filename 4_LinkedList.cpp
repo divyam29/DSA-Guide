@@ -245,13 +245,13 @@ Node *deleteNodeLL(Node *head, int index)
 
 int main()
 {
-    int LL[] = {1, 2, 3, 4, 5};
-    int size = sizeof(LL) / sizeof(int);
-    Node *head = createLL(LL, size);
+    // int LL[] = {1, 2, 3, 4, 5};
+    // int size = sizeof(LL) / sizeof(int);
+    // Node *head = createLL(LL, size);
 
-    cout << "Original Linked List:\n";
-    displayLL(head);
-    cout << endl;
+    // cout << "Original Linked List:\n";
+    // displayLL(head);
+    // cout << endl;
     // recursiveDisplayLL(head);
 
     // cout << "No. of Nodes in LL: " << countNodesLL(head);
@@ -291,10 +291,32 @@ int main()
     // displayLL(head);
     // cout << endl;
 
-    head = deleteNodeLL(head, 4);
-    cout << "New Linked List:\n";
-    displayLL(head);
-    cout << endl;
+    // head = deleteNodeLL(head, 4);
+    // cout << "New Linked List:\n";
+    // displayLL(head);
+    // cout << endl;
+
+    int LL[] = {4, 2, 2, 3};
+    int size = sizeof(LL) / sizeof(int);
+    Node *head = createLL(LL, size);
+
+    vector<int> vct;
+    Node *temp = head;
+    while (temp != NULL)
+    {
+        vct.push_back(temp->data);
+        temp = temp->next;
+    }
+    int j = 0;
+    int l = vct.size();
+    vector<int> ans(l);
+    for (int i = 0; i <= (l / 2) - 1; i++)
+    {
+        int k=l-1-i;
+        ans[j] = vct[i] + vct[k];
+        cout << ans[j] << endl;
+        j++;
+    }
 
     return 0;
 }
