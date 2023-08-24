@@ -46,6 +46,69 @@ void InOrder(Node *root)
     }
 }
 
+void MorrisTraversalInorder(Node *root)
+{
+    Node *current, *pre;
+
+    if (root == NULL)
+        return;
+
+    current = root;
+    while (current != NULL)
+    {
+        if (current->left == NULL)
+        {
+            cout << current->data << " ";
+            current = current->right;
+        }
+        else
+        {
+            pre = current->left;
+            while (pre->right != NULL && pre->right != current)
+                pre = pre->right;
+
+            if (pre->right == NULL)
+            {
+                pre->right = current;
+                current = current->left;
+            }
+
+            else
+            {
+                pre->right = NULL;
+                cout << current->data << " ";
+                current = current->right;
+            }
+        }
+    }
+}
+
+vector<vector<int>> levelOrder(Node *root)
+{
+    vector<vector<int>> ans;
+    if (root == NULL)
+        return ans;
+    queue<Node *> q;
+    q.push(root);
+    while (!q.empty())
+    {
+        vector<int> lvl;
+        int sz = q.size();
+        while (sz--)
+        {
+            Node *temp = q.front();
+            q.pop();
+            lvl.push_back(temp->data);
+            if (temp->left)
+                q.push(temp->left);
+            if (temp->right)
+                q.push(temp->right);
+        }
+        ans.push_back(lvl);
+    }
+    return ans;
+}
+
 int main()
 {
     Node *root = new Node(4);
@@ -67,10 +130,21 @@ int main()
     //  5   2
 
     preOrder(root);
-    cout<<endl;
+    cout << endl;
     postOrder(root);
-    cout<<endl;
+    cout << endl;
     InOrder(root);
-
+    cout << endl;
+    MorrisTraversalInorder(root);
+    cout << endl;
+    vector<vector<int>> lvlOrder = levelOrder(root);
+    for (auto i : lvlOrder)
+    {
+        for (auto j : i)
+        {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
