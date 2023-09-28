@@ -109,6 +109,37 @@ int height(Node *node)
     return max(height(node->left), height(node->right)) + 1;
 }
 
+void levelOrder2(Node *root)
+{
+    vector<vector<int>> ans;
+    queue<Node *> q;
+    q.push(root);
+    while (!q.empty())
+    {
+        vector<int> lvl;
+        int sz = q.size();
+        while (sz--)
+        {
+            Node *temp = q.front();
+            q.pop();
+            lvl.push_back(temp->data);
+            if (temp->left)
+                q.push(temp->left);
+            if (temp->right)
+                q.push(temp->right);
+        }
+        ans.push_back(lvl);
+    }
+    for (auto i : ans)
+    {
+        for (auto j : i)
+        {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+}
+
 int main()
 {
     Node *root = NULL;
@@ -126,8 +157,10 @@ int main()
     inOrder(root);
     cout << endl;
     postOrder(root);
-    cout<<endl;
-    cout<<height(root);
+    cout << endl;
+    levelOrder2(root);
+    cout << endl;
+    cout << height(root);
 
     return 0;
 }
